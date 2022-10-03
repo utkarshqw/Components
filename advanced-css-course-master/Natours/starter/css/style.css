@@ -1,0 +1,244 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+  *,
+  *::after,
+  *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}  
+
+html{
+  font-size: 62.5%;
+}
+
+body {
+  /*these thing should be inherited the write way*/
+
+  font-family: "Lato", sans-serif; /*lato or sans-serif*/
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7; /* 1.7 times bigger*/
+  color: #777;
+  padding: 3rem;
+  box-sizing: border-box;
+
+}
+
+.header {
+  height: 95vh; /*95% of view height*/
+  background-image: linear-gradient(                                                /*NEW THING*/
+      to right bottom,
+      rgba(126, 213, 111, 0.801),
+      hsla(160, 64%, 43%, 0.801)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+
+  clip-path: polygon(0 0, 100% 0 , 100% 73%, 0 100%) ;
+  position:relative
+}
+
+
+.logo-box{
+ position: absolute;
+ top:4rem;
+ left:4rem;
+}
+
+.logo{
+
+  height:3.5rem;
+  animation: moveinRight 1s ease-out 
+}
+
+
+
+.text-box{
+  
+  position: absolute;
+  top:40%;
+  left: 50%;
+transform: translate(-50%,-50%);                                               /*NEW THING*/
+text-align: center;
+}
+
+.heading-primary{
+  color:#fff;
+  text-transform: uppercase;
+
+   backface-visibility: hidden;                    /*   NEW THING */
+   margin-bottom: 6rem;
+}
+
+
+.heading-primary-main{
+display:block;
+font-size: 6rem;
+font-weight: 400;
+letter-spacing: 3.5rem;
+animation-name: moveinLeft;
+animation-duration: 1s;
+animation-timing-function: ease-out ;
+
+/* animation-iteration-count: infinite | count ;    
+
+/* animation-delay: 3s; */
+
+
+}
+
+
+
+.heading-primary-sub{
+ display:block;
+ font-size: 2rem;
+ font-weight:700;
+ letter-spacing: 1.75rem;
+
+ animation: moveinRight 1s ease-out   /*shortcut for writing animation*/
+}
+
+
+/********************third class using @keyframes***************************/
+
+
+/*
+
+for brower optimisation use opacity and trasform only
+: x is left to right 
+: y is top to bottom
+
+
+*/
+
+
+@keyframes moveinLeft {
+  0%{
+      opacity: 0;
+      transform: translateX(-10rem) 
+      
+  }
+ 
+
+  80%{
+    transform: translateX(1rem);
+
+  }
+
+  100%{
+    opacity: 1;
+    transform: translate(0)   /* element will look exactly as without any animation*/
+
+  }
+}
+
+
+@keyframes moveinRight {
+  0%{
+      opacity: 0;
+      transform: translateX(10rem);
+      
+  }
+
+  80%{
+    transform: translateX(-1rem);
+
+  }
+
+  100%{
+    opacity: 1;
+    transform: translate(0);  /* element will look exactly as without any animation*/
+
+  }
+}
+
+@keyframes moveInBottom{
+  0%{
+    opacity:0;
+    transform:translateY(3rem)
+
+  }
+  100%{
+    opacity:1;
+    transform: translate(0);
+  }
+}
+
+/* class 6 ::before ::after */
+/* visited simply means that once we visit a link it's color changes here we are keeping it same */
+.btn:link , .btn:visited {        /*pseudo class link is used the button acts as a link*/
+
+  text-transform: uppercase;
+  text-decoration: none;
+ padding: 1.5rem 4rem;            /*first one for top and bottom and the next one for left and right*/
+ display: inline-block; /*New thing*/
+ border-radius: 10rem;
+ /* transition property should be in the initial state */
+ transition: all .2s;   
+ position: relative; 
+ font-size:1.6rem ;
+
+}
+
+.btn:hover{
+  transform: translateY(-3px);  /*it's not Y asix it is epsalon because it moves from top to bottom*/
+   box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);   /* x epsalon, blurr color of shodow with rgb and opacity */
+}
+
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.2); 
+}
+
+.btn-white{
+  background-color: #fff;
+  color: #777;
+
+}
+
+  /* ::after needs content and display */
+
+.btn::after {
+
+  content:"";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;      /* absolute needs reference which is the first relative element it can find */
+  top:0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+
+
+
+}
+
+.btn-white::after{
+
+  background-color: white;
+}
+
+.btn:hover::after{
+
+transform: scaleX(1.4) scaleY(1.6);
+opacity:0;
+
+}
+
+.btn-animated{
+  animation: moveInBottom .5s ease-out .75s;  /* the last one is animation delay */
+  animation-fill-mode: backwards;             /* new thing */                                   
+}
+ 
+
